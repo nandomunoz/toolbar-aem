@@ -157,7 +157,7 @@ In the options page, **Plugin links** controls whether plugin bookmarks appear i
 
 No other permission is requested.
 
-The extension collects no data, has no analytics and makes no network requests of its own. Everything it needs is in this repository: no CDNs, no remote fonts, no remote code. The interface uses your system fonts; the only bundled font is VT323, used on the credits screen.
+The extension collects no data, has no analytics and makes no network requests of its own. Everything it needs is in this repository: no CDNs, no remote fonts, no remote code. The interface uses your system fonts; the only bundled font is Cozette, used on the credits screen.
 
 ## Project structure
 
@@ -170,7 +170,7 @@ The extension collects no data, has no analytics and makes no network requests o
 | `options.html`, `options.js`, `options.css` | The options page. |
 | `background.js` | Service worker; opens the options page. |
 | `credits.js`, `credits.css` | Credits screen on the options page. |
-| `fonts/` | VT323, the font of the credits screen, with its license. |
+| `fonts/` | Cozette, the font of the credits screen. |
 | `plugins/` | Optional project-specific plugins. |
 
 ## About the project
@@ -198,5 +198,3 @@ Created by Nando Muñoz.
 ## License
 
 Released under the [MIT License](LICENSE). You are free to use, modify and distribute it, including in commercial projects, as long as the copyright notice is kept.
-
-The bundled VT323 font is copyright The VT323 Project Authors and licensed separately under the [SIL Open Font License 1.1](fonts/VT323-OFL.txt).

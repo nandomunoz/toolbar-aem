@@ -1,12 +1,12 @@
 /* Easter egg: matrix rain + green phosphor CRT terminal, 80s style. */
 
-/* Bundled with the extension (SIL Open Font License, see fonts/VT323-OFL.txt): never fetched from a CDN. */
+/* Bundled with the extension (MIT, Latin subset of CozetteVector): never fetched from a CDN. */
 @font-face {
-  font-family: "VT323";
+  font-family: "Cozette";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local("VT323"), url("fonts/vt323.woff2") format("woff2");
+  src: url("fonts/cozette.woff2") format("woff2");
 }
 
 :root {
@@ -27,9 +27,9 @@
   border: none;
   background: transparent;
   color: var(--phosphor);
-  font-family: "VT323", ui-monospace, Menlo, monospace;
+  font-family: "Cozette", ui-monospace, Menlo, monospace;
   font-size: 20px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
   text-shadow: 0 0 6px var(--phosphor-glow);
   opacity: 0.5;
   cursor: pointer;
@@ -75,9 +75,9 @@
   border: none;
   background: transparent;
   color: var(--phosphor);
-  font-family: "VT323", ui-monospace, Menlo, monospace;
+  font-family: "Cozette", ui-monospace, Menlo, monospace;
   font-size: 20px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
   text-shadow: 0 0 6px var(--phosphor-glow);
   cursor: pointer;
   opacity: 0.55;
@@ -105,10 +105,10 @@
   left: 50%;
   transform: translateX(-50%);
   width: min(760px, 86vw);
-  font-family: "VT323", ui-monospace, Menlo, monospace;
+  font-family: "Cozette", ui-monospace, Menlo, monospace;
   font-size: clamp(24px, 3.4vw, 40px);
   line-height: 1.6;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: pre-wrap;
   color: var(--phosphor);
