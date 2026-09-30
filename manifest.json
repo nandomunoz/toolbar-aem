@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Toolbar AEM Browser",
+  "version": "2.0.0",
+  "description": "Floating toolbar for navigating between AEM modes (Editor, Sites, CRXDE) and switching between environments.",
+  "icons": {
+    "128": "icon.png"
+  },
+  "permissions": ["storage"],
+  "options_page": "options.html",
+  "action": {
+    "default_title": "Toolbar AEM Browser settings"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["config.js", "index.js"],
+      "css": ["style.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "default-config.json",
+        "favicon-local.ico",
+        "favicon-dev.png",
+        "favicon-qa.png",
+        "favicon-stage.png"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "environments": [
+    { "id": "local", "label": "Local", "url": "http://localhost:4502", "color": "#4ade80" },
+    { "id": "dev", "label": "Dev", "url": "https://author-p00000-e00001.adobeaemcloud.com", "color": "#2563eb" },
+    { "id": "qa", "label": "QA", "url": "https://author-p00000-e00002.adobeaemcloud.com", "color": "#f59e0b" },
+    { "id": "stage", "label": "Stage", "url": "https://author-p00000-e00003.adobeaemcloud.com", "color": "#7c3aed" }
+  ],
+  "bundledFavicons": {
+    "local": "favicon-local.ico",
+    "dev": "favicon-dev.png",
+    "qa": "favicon-qa.png",
+    "stage": "favicon-stage.png"
+  },
+  "settings": {
+    "showToolbar": true,
+    "startCollapsed": false,
+    "position": "bottom",
+    "faviconSwap": true,
+    "crxNewTab": true,
+    "viewWcmModeDisabled": true,
+    "pathFieldLinks": true,
+    "pluginLinksMode": "bookmarks",
+    "buttons": {
+      "edit": true,
+      "view": true,
+      "sites": true,
+      "crx": true,
+      "favorites": true
+    }
+  },
+  "favorites": [],
+  "consoleRules": []
+}

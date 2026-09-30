@@ -1,0 +1,453 @@
+/* ToolbarAEM — visual language adapted from the Astro dev toolbar:
+   pill, full-height cells, segment dividers, highlight on the active cell,
+   over a very dark lilac palette. */
+
+/* Injected next to Granite UI path fields' browse button, reuses that button's own classes. */
+.aem-toolbar-pathgo-btn {
+  margin-inline-start: 4px;
+  background: #39ff14 !important;
+  color: #000 !important;
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+
+.aem-toolbar-pathgo-btn:hover {
+  opacity: 1;
+}
+
+.aem-toolbar-pathgo-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.aem-toolbar,
+.aem-toolbar *,
+.aem-toolbar *::before,
+.aem-toolbar *::after {
+  box-sizing: border-box;
+}
+
+.aem-toolbar {
+  /* palette */
+  --t-surface-top: #262038;
+  --t-surface-bottom: #191428;
+  --t-elevated: #201a31;
+  --t-border: rgba(196, 181, 253, 0.15);
+  --t-divider: rgba(196, 181, 253, 0.11);
+  --t-hover: rgba(196, 181, 253, 0.11);
+  --t-active: #473b6b;
+  --t-text: #ece8f7;
+  --t-text-dim: #b6acd1;
+  --t-shadow: rgba(10, 6, 20, 0.55);
+
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  display: flex;
+  align-items: stretch;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--t-border);
+  border-radius: 9999px;
+  background: linear-gradient(180deg, var(--t-surface-top) 0%, var(--t-surface-bottom) 100%);
+  box-shadow: 0 1px 2px var(--t-shadow), 0 12px 32px var(--t-shadow);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--t-text);
+  pointer-events: auto;
+  transition: opacity 0.2s ease, height 0.2s ease, box-shadow 0.25s ease;
+}
+
+/* ---------- cells ---------- */
+
+.aem-toolbar-group {
+  display: flex;
+  align-items: stretch;
+}
+
+.aem-toolbar-group.hidden {
+  display: none;
+}
+
+.aem-toolbar-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 48px;
+  height: 100%;
+  margin: 0;
+  padding: 0 12px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--t-text-dim);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.aem-toolbar-cell svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  display: block;
+}
+
+.aem-toolbar-cell:hover:not(:disabled) {
+  background: var(--t-hover);
+  color: #fff;
+}
+
+/* Current mode / open menu — the highlighted cell from the Astro toolbar. */
+.aem-toolbar-cell:disabled,
+.aem-toolbar-env.open .aem-toolbar-env-toggle {
+  background: var(--t-active);
+  color: #fff;
+  cursor: default;
+}
+
+/* Round the outer ends so the highlight follows the pill silhouette. */
+.aem-toolbar-group > :first-child,
+.aem-toolbar-group > :first-child .aem-toolbar-cell {
+  border-radius: 9999px 0 0 9999px;
+}
+
+.aem-toolbar-group > :first-child.aem-toolbar-cell,
+.aem-toolbar-group > :first-child .aem-toolbar-cell {
+  padding-left: 16px;
+}
+
+.aem-toolbar-options {
+  border-left: 1px solid var(--t-divider);
+}
+
+.aem-toolbar-toggle {
+  border-radius: 0 9999px 9999px 0;
+  border-left: 1px solid var(--t-divider);
+  padding-right: 16px;
+  min-width: 44px;
+}
+
+.aem-toolbar.collapsed .aem-toolbar-toggle {
+  border-left: none;
+  border-radius: 9999px;
+  padding: 0 10px;
+  min-width: 34px;
+}
+
+.aem-toolbar.collapsed .aem-toolbar-toggle svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ---------- tooltips ---------- */
+
+.aem-toolbar-cell[data-label]:hover::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 9px;
+  border: 1px solid var(--t-border);
+  border-radius: 7px;
+  background: var(--t-elevated);
+  box-shadow: 0 6px 18px var(--t-shadow);
+  color: var(--t-text);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ---------- environment switcher ---------- */
+
+.aem-toolbar-env {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border-right: 1px solid var(--t-divider);
+}
+
+.aem-toolbar-env-toggle {
+  gap: 8px;
+}
+
+.aem-toolbar-env-toggle svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0.55;
+  transition: transform 0.2s ease;
+}
+
+.aem-toolbar-env.open .aem-toolbar-env-toggle svg {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+.aem-toolbar-env-name {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.aem-toolbar-env-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #8d84a8;
+  box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.08);
+}
+
+.aem-toolbar-env-menu {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 0;
+  min-width: 168px;
+  padding: 6px;
+  border: 1px solid var(--t-border);
+  border-radius: 12px;
+  background: var(--t-elevated);
+  box-shadow: 0 1px 2px var(--t-shadow), 0 12px 32px var(--t-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.aem-toolbar-env-menu.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px);
+}
+
+.aem-toolbar-env-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 9px 11px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: #d8d1ec;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.aem-toolbar-env-item:hover:not(:disabled) {
+  background: var(--t-hover);
+  color: #fff;
+}
+
+.aem-toolbar-env-item.current {
+  background: var(--t-active);
+  color: #fff;
+  cursor: default;
+}
+
+/* ---------- bookmarks ---------- */
+
+.aem-toolbar-favorites {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border-left: 1px solid var(--t-divider);
+}
+
+.aem-toolbar-favorites-toggle svg:last-child {
+  width: 12px;
+  height: 12px;
+  opacity: 0.55;
+  transition: transform 0.2s ease;
+}
+
+.aem-toolbar-favorites.open .aem-toolbar-favorites-toggle {
+  background: var(--t-active);
+  color: #fff;
+}
+
+.aem-toolbar-favorites.open .aem-toolbar-favorites-toggle svg:last-child {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+.aem-toolbar-favorites-menu {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  right: 0;
+  min-width: 190px;
+  padding: 6px;
+  border: 1px solid var(--t-border);
+  border-radius: 12px;
+  background: var(--t-elevated);
+  box-shadow: 0 1px 2px var(--t-shadow), 0 12px 32px var(--t-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.aem-toolbar-favorites-menu.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px);
+}
+
+.aem-toolbar-favorites-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 9px 11px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: #d8d1ec;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.aem-toolbar-favorites-item svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  opacity: 0.75;
+}
+
+.aem-toolbar-favorites-item:hover {
+  background: var(--t-hover);
+  color: #fff;
+}
+
+/* ---------- docked at the top ---------- */
+
+.aem-toolbar.top {
+  top: 16px;
+  bottom: auto;
+}
+
+.aem-toolbar.top .aem-toolbar-env-menu,
+.aem-toolbar.top .aem-toolbar-favorites-menu,
+.aem-toolbar.top .aem-toolbar-cell[data-label]:hover::after {
+  top: calc(100% + 12px);
+  bottom: auto;
+}
+
+.aem-toolbar.top .aem-toolbar-env-menu.hidden,
+.aem-toolbar.top .aem-toolbar-favorites-menu.hidden {
+  transform: translateY(-6px);
+}
+
+/* ---------- collapsed ---------- */
+
+.aem-toolbar.collapsed {
+  height: 30px;
+}
+
+/* Pointer devices: fully transparent until pointed at. It stays hoverable
+   because opacity does not remove the element, and it shrinks to keep the
+   invisible hotspot small. */
+@media (hover: hover) and (pointer: fine) {
+  .aem-toolbar.collapsed {
+    opacity: 0;
+  }
+
+  .aem-toolbar.collapsed:hover,
+  .aem-toolbar.collapsed:focus-within {
+    opacity: 1;
+  }
+}
+
+/* Touch devices: no hover to reveal it, so the collapsed state becomes a
+   grabber pinned to the screen edge — visible enough to find, small enough
+   to stay out of the way, and clear of the content area. */
+@media (hover: none), (pointer: coarse) {
+  .aem-toolbar.collapsed {
+    bottom: env(safe-area-inset-bottom, 0px);
+    height: 28px; /* invisible padding around the handle, for a tappable target */
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .aem-toolbar.top.collapsed {
+    top: env(safe-area-inset-top, 0px);
+    bottom: auto;
+  }
+
+  .aem-toolbar.collapsed .aem-toolbar-toggle {
+    width: 64px;
+    min-width: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  /* the chevron gives way to a thin handle */
+  .aem-toolbar.collapsed .aem-toolbar-toggle svg {
+    display: none;
+  }
+
+  .aem-toolbar.collapsed .aem-toolbar-toggle::before {
+    content: "";
+    width: 38px;
+    height: 4px;
+    border-radius: 9999px;
+    background: var(--t-text-dim);
+    opacity: 0.4;
+    transition: opacity 0.15s ease;
+  }
+
+  .aem-toolbar.collapsed .aem-toolbar-toggle:active::before {
+    opacity: 0.9;
+  }
+
+  /* tap-triggered :hover would leave tooltips stuck on screen */
+  .aem-toolbar-cell[data-label]:hover::after {
+    display: none;
+  }
+}
+
+/* Narrow screens: tighten the cells so the expanded pill still fits. */
+@media (max-width: 430px) {
+  .aem-toolbar-cell {
+    min-width: 42px;
+    padding: 0 9px;
+  }
+
+  .aem-toolbar-group > :first-child.aem-toolbar-cell,
+  .aem-toolbar-group > :first-child .aem-toolbar-cell {
+    padding-left: 13px;
+  }
+
+  .aem-toolbar-toggle {
+    min-width: 40px;
+    padding-right: 13px;
+  }
+}

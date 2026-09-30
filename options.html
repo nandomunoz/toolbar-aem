@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Toolbar AEM Browser — Settings</title>
+    <link rel="stylesheet" href="options.css" />
+    <link rel="stylesheet" href="credits.css" />
+  </head>
+  <body>
+    <button id="creditsBtn" class="credits-btn" type="button" title="Credits" aria-label="Show the credits">[ ENTER ]</button>
+
+    <div class="page">
+      <header class="head">
+        <h1>Toolbar AEM Browser</h1>
+        <p>Configure the environments, the toolbar and where it should appear.</p>
+      </header>
+
+      <section class="card">
+        <div class="card-head">
+          <h2>Environments</h2>
+          <p>Shown in the toolbar dropdown. Switching keeps the current console and content path.</p>
+        </div>
+
+        <div class="env-head">
+          <span>Color</span>
+          <span>Name</span>
+          <span>Author URL</span>
+          <span></span>
+        </div>
+        <div id="envList" class="env-list"></div>
+
+        <button id="addEnv" class="btn ghost small">+ Add environment</button>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <h2>Toolbar</h2>
+          <p>What the toolbar does and how it shows up on the page.</p>
+        </div>
+
+        <label class="check">
+          <input type="checkbox" id="showToolbar" />
+          <span><strong>Show the toolbar</strong><em>Turn off to keep only the favicon per environment.</em></span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" id="faviconSwap" />
+          <span><strong>Change the favicon per environment</strong><em>Makes each tab recognisable at a glance.</em></span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" id="startCollapsed" />
+          <span><strong>Start collapsed</strong><em>Load minimised and expand it when you need it.</em></span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" id="crxNewTab" />
+          <span><strong>Open CRXDE in a new tab</strong><em>Otherwise it replaces the current tab.</em></span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" id="viewWcmModeDisabled" />
+          <span><strong>Disable WCM mode in View URLs</strong><em>Adds <code>wcmmode=disabled</code> when opening View.</em></span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" id="pathFieldLinks" />
+          <span><strong>"Go to path" button on path fields</strong><em>Adds a shortcut button next to Granite UI path pickers to jump straight to that path.</em></span>
+        </label>
+
+        <div class="field">
+          <label for="position">Position</label>
+          <select id="position">
+            <option value="bottom">Bottom center</option>
+            <option value="top">Top center</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <span class="field-label">Visible buttons</span>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" data-button="edit" /><span>Edit</span></label>
+            <label class="chip"><input type="checkbox" data-button="view" /><span>View</span></label>
+            <label class="chip"><input type="checkbox" data-button="sites" /><span>Sites</span></label>
+            <label class="chip"><input type="checkbox" data-button="crx" /><span>CRXDE</span></label>
+            <label class="chip"><input type="checkbox" data-button="favorites" /><span>Bookmarks</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <h2>Bookmarks</h2>
+        </div>
+
+        <div class="field">
+          <label for="pluginLinksMode">Plugin links</label>
+          <select id="pluginLinksMode">
+            <option value="bookmarks">Show inside Bookmarks</option>
+            <option value="separate">Show in their own toolbar button</option>
+          </select>
+        </div>
+
+        <div class="favorite-head">
+          <span>Label</span>
+          <span>Path or full URL</span>
+          <span></span>
+        </div>
+        <div id="favoriteList" class="env-list"></div>
+
+        <button id="addFavorite" class="btn ghost small">+ Add bookmark</button>
+      </section>
+
+      <footer class="actions">
+        <button id="save" class="btn primary">Save changes</button>
+        <button id="reset" class="btn ghost">Reset to defaults</button>
+        <button id="exportSettings" class="btn ghost" type="button">Export settings</button>
+        <button id="importSettings" class="btn ghost" type="button">Import settings</button>
+        <input id="importFile" type="file" accept="application/json,.json" hidden />
+        <span id="status" class="status"></span>
+      </footer>
+    </div>
+
+    <div id="credits" class="credits" hidden>
+      <canvas id="matrixCanvas" class="credits-matrix"></canvas>
+
+      <div class="credits-stage">
+        <!-- Keep the spans glued to the div: white-space pre-wrap renders literal HTML indentation. -->
+        <div class="credits-terminal"><span id="termText"></span><span class="term-cursor" aria-hidden="true"></span></div>
+      </div>
+
+      <div class="credits-crt" aria-hidden="true"></div>
+
+      <button id="creditsClose" class="credits-close" type="button">[ ESC ]</button>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="options.js"></script>
+    <script src="credits.js"></script>
+  </body>
+</html>

@@ -1,0 +1,185 @@
+/* Easter egg: matrix rain + green phosphor CRT terminal, 80s style. */
+
+/* Bundled with the extension (SIL Open Font License, see fonts/VT323-OFL.txt): never fetched from a CDN. */
+@font-face {
+  font-family: "VT323";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("VT323"), url("fonts/vt323.woff2") format("woff2");
+}
+
+:root {
+  --phosphor: #29fd53;
+  --phosphor-dim: rgba(41, 253, 83, 0.55);
+  --phosphor-glow: rgba(41, 253, 83, 0.35);
+}
+
+/* ---------- trigger ---------- */
+
+/* Same voice as the [ ESC ] inside: a phosphor key cap, half asleep until hovered. */
+.credits-btn {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  z-index: 20;
+  padding: 6px 10px;
+  border: none;
+  background: transparent;
+  color: var(--phosphor);
+  font-family: "VT323", ui-monospace, Menlo, monospace;
+  font-size: 20px;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 6px var(--phosphor-glow);
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.2s, text-shadow 0.2s;
+}
+
+.credits-btn:hover,
+.credits-btn:focus-visible {
+  outline: none;
+  opacity: 1;
+  text-shadow: 0 0 4px var(--phosphor-dim), 0 0 16px var(--phosphor-glow);
+  animation: phosphorFlicker 0.35s steps(2) 2;
+}
+
+/* ---------- overlay ---------- */
+
+.credits {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #000;
+  overflow: hidden;
+}
+
+.credits[hidden] {
+  display: none;
+}
+
+.credits-matrix {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+
+.credits-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  z-index: 6;
+  padding: 6px 10px;
+  border: none;
+  background: transparent;
+  color: var(--phosphor);
+  font-family: "VT323", ui-monospace, Menlo, monospace;
+  font-size: 20px;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 6px var(--phosphor-glow);
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.2s, text-shadow 0.2s;
+}
+
+.credits-close:hover,
+.credits-close:focus-visible {
+  outline: none;
+  opacity: 1;
+  text-shadow: 0 0 4px var(--phosphor-dim), 0 0 16px var(--phosphor-glow);
+}
+
+/* ---------- terminal ---------- */
+
+.credits-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.credits-terminal {
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(760px, 86vw);
+  font-family: "VT323", ui-monospace, Menlo, monospace;
+  font-size: clamp(24px, 3.4vw, 40px);
+  line-height: 1.6;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: pre-wrap;
+  color: var(--phosphor);
+  text-shadow: 0 0 1px var(--phosphor), 0 0 8px var(--phosphor-dim), 0 0 26px var(--phosphor-glow);
+  animation: phosphorHum 6s infinite;
+}
+
+.term-cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 0.95em;
+  margin-left: 0.12em;
+  vertical-align: -0.08em;
+  background: var(--phosphor);
+  box-shadow: 0 0 10px var(--phosphor-dim);
+  animation: cursorBlink 1.06s steps(2, start) infinite;
+}
+
+@keyframes cursorBlink {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* Slow, barely-there brightness drift, like a tube that never sits still. */
+@keyframes phosphorHum {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  8% {
+    opacity: 0.93;
+  }
+  9% {
+    opacity: 1;
+  }
+  54% {
+    opacity: 0.96;
+  }
+  55% {
+    opacity: 1;
+  }
+}
+
+@keyframes phosphorFlicker {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* ---------- CRT layer: scanlines + vignette, above everything, no clicks ---------- */
+
+.credits-crt {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0 2px,
+      rgba(0, 0, 0, 0.24) 2px 4px
+    ),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .credits-terminal,
+  .term-cursor,
+  .credits-btn:hover {
+    animation: none;
+  }
+}
