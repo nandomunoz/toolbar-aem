@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toolbar AEM · Extensión de Chrome para cambiar de consola en AEM</title>
+<meta name="description" content="Extensión gratuita de Chrome para AEM: salta entre Editor, Vista, Sites y CRXDE, y entre Local, Dev, QA y Stage, manteniendo la ruta del contenido. Se instala en 4 pasos.">
+<link rel="canonical" href="https://nandomunoz.github.io/toolbar-aem/es/">
+<link rel="alternate" hreflang="en" href="https://nandomunoz.github.io/toolbar-aem/">
+<link rel="alternate" hreflang="es" href="https://nandomunoz.github.io/toolbar-aem/es/">
+<link rel="alternate" hreflang="x-default" href="https://nandomunoz.github.io/toolbar-aem/">
+<meta name="robots" content="index, follow">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolbar AEM">
+<meta property="og:url" content="https://nandomunoz.github.io/toolbar-aem/es/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Toolbar AEM · Extensión de Chrome para cambiar de consola en AEM">
+<meta property="og:description" content="Una barra flotante en las páginas de AEM: cambia de consola y de entorno con un clic, manteniendo la ruta del contenido. Gratis y de código abierto.">
+<meta property="og:image" content="https://nandomunoz.github.io/toolbar-aem/assets/toolbar-scene.webp">
+<meta property="og:image:alt" content="Toolbar AEM flotando sobre una ventana del navegador con Adobe Experience Manager, con líneas desde cada botón hasta la consola que abre.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/icon.png" type="image/png">
+<link rel="preload" href="../assets/toolbar-scene.webp" as="image" type="image/webp" fetchpriority="high">
+<script src="https://cdn.jsdelivr.net/npm/@luz-ds/core@0.4.1/dist/theme-boot.min.js" integrity="sha384-OZKDsi988vhyFXOEXAMOafikHXZ3ixsF5DPECRdgxQ61gvyupyYCxaH4SOB4kaYV" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@luz-ds/tokens@0.4.1/dist/luz-tokens.min.css" integrity="sha384-XDR3N5eZIuICoLuh6LhwDDEdfeeDDf62e0WB8E0IMsBpvzBVFkwn7plVPLEHjP+W" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@luz-ds/core@0.4.1/dist/luz.min.css" integrity="sha384-fMr2nR2ENqlXOiONQvKhudKJkiKRzMoTJ5GVe31O+28T4B7dAYQe9GTkBSKbWztr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@luz-ds/catalog@0.4.1/dist/components/site-header.min.css" integrity="sha384-21PMBkvzBZetFOsMonT4oc4Ak41zobEeRyD0yfqjWd9UWhrz0PEpMPo/3hyvH1BH" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@luz-ds/catalog@0.4.1/dist/components/navbar.min.css" integrity="sha384-0Ei6tmImyRUt2v+8h1nC5eFL476Rf4AFL1pDqjqETU8/+v4Of4/M+I+ZOzS49yN7" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@luz-ds/catalog@0.4.1/dist/components/lang-switch.min.css" integrity="sha384-/CoO68kAJcVIGedf4xHY5JsMuUcSTkQs3MhJyc+jKvjJO1IN62ztsedeqNDvsVUj" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@luz-ds/catalog@0.4.1/dist/components/hero.min.css" integrity="sha384-yY6Z5/WOdLWJ5gJVsJd6tYONFWiaFA3uu8P2nHPqbXqdGhDCL5lVbif0VJ2a5CnB" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@luz-ds/catalog@0.4.1/dist/components/main.min.css" integrity="sha384-fSDcBofUvDclss8ermBOj5Mp3HwqS0KiPg5PdY1+ux+91hdpKOF9wcLmM+G3Coq4" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@luz-ds/catalog@0.4.1/dist/components/section.min.css" integrity="sha384-IQZYJCtvKeQG+qt4Hfu95jMHtMMQam8TJG78lOSvj106ud4ncidLUQ+JjWKJKKpV" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@luz-ds/catalog@0.4.1/dist/components/site-footer.min.css" integrity="sha384-FR+jyrfxxEHbQxuQlEqke2i0HzUuuxoD3YoDetXacWWX9xoIm9TJ4NBGxW9dty3n" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@luz-ds/catalog@0.4.1/dist/components/glow.min.css" integrity="sha384-Jz/eFLH0Ygi6iqQ+xcRrRhniKJbUEGD6yVdCDsRKJDrTq4H6FcjT1dFGo7UmRWba" crossorigin="anonymous">
+<link rel="stylesheet" href="../assets/landing.css">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@luz-ds/core@0.4.1/dist/luz.min.js" integrity="sha384-MgJmap9riiFYdSl/DtnXO2wMcRzxuIJS/nX5jqKRrOqK3VqhmfNRrfW3EP1WDJgA" crossorigin="anonymous"></script>
+<script src="../assets/landing.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Toolbar AEM",
+  "alternateName": "Toolbar AEM Browser",
+  "url": "https://nandomunoz.github.io/toolbar-aem/es/",
+  "inLanguage": "es",
+  "description": "Extensión de Chrome que añade una barra flotante a las páginas de Adobe Experience Manager para cambiar entre consolas y entornos sin reescribir URLs.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Google Chrome",
+  "license": "https://opensource.org/licenses/MIT",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "downloadUrl": "https://github.com/nandomunoz/toolbar-aem/archive/refs/heads/master.zip",
+  "codeRepository": "https://github.com/nandomunoz/toolbar-aem",
+  "image": "https://nandomunoz.github.io/toolbar-aem/assets/toolbar-scene.webp",
+  "author": {
+    "@type": "Person",
+    "name": "Nando Muñoz"
+  }
+}
+</script>
+</head>
+<body class="o-page luz-glow">
+<a class="luz-skip-link" href="#main-content">Saltar al contenido principal</a>
+
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="i-mark" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="currentColor"/><rect x="10" y="22" width="44" height="20" rx="10" fill="var(--luz-surface-page)"/><circle cx="20" cy="32" r="5" fill="#ff0000"/><circle cx="32" cy="32" r="3" fill="currentColor"/><circle cx="42" cy="32" r="3" fill="currentColor"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v11M7.5 10l4.5 4.5 4.5-4.5M4.5 16.5v3h15v-3"/></symbol>
+  <symbol id="i-gh" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7c-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h7M15.5 4.5l4 4L9 19H5v-4z"/></symbol>
+  <symbol id="i-view" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-sites" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M9.5 4v16"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8.5 7-5 5 5 5M15.5 7l5 5-5 5"/></symbol>
+  <symbol id="i-bm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6.5 3.5h11v17L12 16.5l-5.5 4z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></symbol>
+</svg>
+
+<header class="luz-site-header o-sticky">
+  <div class="o-container o-container--inline o-row">
+    <button class="luz-nav-toggle" type="button" popovertarget="site-nav" aria-label="Menú"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></g></svg></button>
+    <a class="luz-site-header__brand" href="./" aria-label="Toolbar AEM, inicio"><svg class="brand-mark" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-mark"/></svg> toolbar aem</a>
+    <nav class="luz-navbar" id="site-nav" aria-label="Principal" popover>
+      <ul class="luz-navbar__list"><li><a class="luz-navbar__link" href="#why">Concepto</a></li><li><a class="luz-navbar__link" href="#features">Funciones</a></li><li><a class="luz-navbar__link" href="#try">Pruébalo</a></li><li><a class="luz-navbar__link" href="#install">Instalar</a></li><li><a class="luz-navbar__link" href="#configure">Configurar</a></li><li><a class="luz-navbar__link" href="#faq">Preguntas</a></li></ul>
+    </nav>
+    <div class="o-row luz-site-header__actions">
+      <luz-lang-switch>
+        <button class="luz-lang-switch__button" type="button" popovertarget="lang-menu"><svg class="luz-lang-switch__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5s1.2-6.1 3.5-8.5Z"/></svg><span class="u-sr-only">Idioma: </span><span class="luz-lang-switch__name">Español</span></button>
+        <nav class="luz-lang-switch__menu" id="lang-menu" popover aria-labelledby="lang-title">
+          <p class="luz-lang-switch__title" id="lang-title">Idioma</p>
+          <ul class="luz-lang-switch__list"><li><a class="luz-lang-switch__link" href="../" hreflang="en" lang="en">English</a></li><li><a class="luz-lang-switch__link" href="./" hreflang="es" lang="es" aria-current="page">Español</a></li></ul>
+        </nav>
+      </luz-lang-switch>
+      <a class="luz-btn luz-btn--primary luz-btn--sm" href="https://github.com/nandomunoz/toolbar-aem/archive/refs/heads/master.zip"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-dl"/></svg> Descargar</a>
+    </div>
+  </div>
+</header>
+
+<main id="main-content" class="o-container o-stack luz-main" tabindex="-1">
+  <section class="luz-hero o-grid o-grid--split" aria-labelledby="hero-title">
+    <div class="luz-hero__copy">
+      <p class="luz-hero__eyebrow">Extensión gratuita de Chrome · MIT · no es un producto de Adobe</p>
+      <h1 class="luz-hero__title" id="hero-title">La barra de AEM,<br>a un clic</h1>
+      <p class="luz-hero__lead">Toolbar AEM es una extensión gratuita de Chrome que añade una barra flotante a las páginas de Adobe Experience Manager. Salta entre Editor, Vista, Sites y CRXDE, y entre Local, Dev, QA y Stage, sin reescribir URLs. La ruta del contenido se mantiene.</p>
+      <p class="tagline">Un clic · misma ruta · cualquier entorno</p>
+      <div class="o-actions">
+        <a class="luz-btn luz-btn--primary" href="https://github.com/nandomunoz/toolbar-aem/archive/refs/heads/master.zip"><svg width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-dl"/></svg> Descargar la extensión</a>
+        <a class="luz-btn luz-btn--outline" href="#install">Instalar en 4 pasos</a>
+      </div>
+    </div>
+    <div class="luz-hero__media">
+      <img class="hero-img" src="../assets/toolbar-scene.webp" width="1167" height="640" fetchpriority="high" decoding="async" alt="Toolbar AEM flotando sobre una ventana del navegador con Adobe Experience Manager, con líneas desde cada botón hasta la consola que abre.">
+    </div>
+  </section>
+
+  <section class="o-stack luz-section" id="why" aria-labelledby="why-title">
+    <p class="luz-section__eyebrow">Concepto</p>
+    <h2 class="luz-section__title" id="why-title">Deja de montar <em>URLs de AEM</em> a mano</h2>
+    <p class="luz-section__lead">Revisar una página en el Editor, luego publicada, luego en Stage y después su nodo en CRXDE significa editar la URL cuatro veces. Toolbar AEM la reescribe por ti y mantiene la ruta del contenido.</p>
+    <ol class="o-grid o-grid--3 steps" role="list"><li class="luz-card"><span class="step-n" aria-hidden="true">01</span><h3 class="luz-card__title">Abre cualquier página de AEM</h3><p class="luz-card__body">La barra aparece en localhost, en los hosts de AEM Cloud y en cada entorno que configures.</p></li><li class="luz-card"><span class="step-n" aria-hidden="true">02</span><h3 class="luz-card__title">Elige una consola o un entorno</h3><p class="luz-card__body">Editar, Vista, Sites, CRXDE, o Local, Dev, QA, Stage: un clic para cada uno.</p></li><li class="luz-card"><span class="step-n" aria-hidden="true">03</span><h3 class="luz-card__title">Aterriza en el mismo contenido</h3><p class="luz-card__body">La misma ruta de contenido se abre en la consola y el entorno de destino, con la forma de URL correcta.</p></li></ol>
+    <img class="wide-img" src="../assets/toolbar-annotated.webp" width="1180" height="554" loading="lazy" decoding="async" alt="Toolbar AEM sobre una página de inicio de AEM, con tres llamadas escritas en inglés: «Local context, Context-Aware Tools» (contexto local, herramientas según el contexto) en el menú de entornos, «Inline Actions» (acciones en línea) en el botón de editar y «Direct Code View» (vista directa del código) en el botón de cuenta.">
+  </section>
+
+  <section class="o-stack luz-section luz-band" id="features" aria-labelledby="f-title">
+    <p class="luz-section__eyebrow">Funciones</p>
+    <h2 class="luz-section__title" id="f-title">Qué hace Toolbar AEM</h2>
+    <ul class="o-grid o-grid--3 features" role="list"><li class="luz-card"><h3 class="luz-card__title">Cambio de consola</h3><p class="luz-card__body">Abre la página actual en Editor, Vista, Sites o CRXDE. Vista puede añadir <code class="luz-code-inline">wcmmode=disabled</code>.</p></li><li class="luz-card"><h3 class="luz-card__title">Cambio de entorno</h3><p class="luz-card__body">Reabre la misma consola y ruta de contenido en Local, Dev, QA, Stage o cualquier entorno que definas.</p></li><li class="luz-card"><h3 class="luz-card__title">Un favicon por entorno</h3><p class="luz-card__body">Cada pestaña toma el color de su entorno, así Stage nunca se confunde con Local.</p></li><li class="luz-card"><h3 class="luz-card__title">Marcadores</h3><p class="luz-card__body">Atajos a las rutas que más usas. Una ruta suelta se abre en el entorno actual.</p></li><li class="luz-card"><h3 class="luz-card__title">Botón «Ir a la ruta»</h3><p class="luz-card__body">Junto a los campos de ruta de Granite UI: abre la ruta escrita en Assets, Experience Fragments, Sites o CRXDE.</p></li><li class="luz-card"><h3 class="luz-card__title">Ajustes de equipo y plugins</h3><p class="luz-card__body">Exporta los ajustes como JSON, o incluye marcadores del proyecto y reglas de consola en un archivo de plugin.</p></li></ul>
+  </section>
+
+  <section class="o-stack luz-section" id="try" aria-labelledby="d-title">
+    <p class="luz-section__eyebrow">Pruébalo</p>
+    <h2 class="luz-section__title" id="d-title">Prueba la barra</h2>
+    <p class="luz-section__lead">Elige otro entorno o consola y mira cómo cambia la URL. La ruta del contenido se mantiene.</p>
+    <figure class="demo" role="group" aria-label="Maqueta interactiva de Toolbar AEM sobre una página de AEM" data-lang="es">
+      <div class="browser">
+        <div class="tabbar">
+          <span class="tab"><span class="fav" data-fav style="--env:#15803d" aria-hidden="true">Lo</span><span data-tabtitle>Adventures · Editor</span></span>
+        </div>
+        <div class="urlbar"><span class="url" data-url lang="en">localhost:4502/editor.html/content/wknd/us/en/adventures.html</span></div>
+        <div class="page" data-page>
+          <div class="page-head"><span class="page-console" data-console-name>Editor de páginas</span><span class="page-env" data-env-name>Local</span></div>
+          <div class="page-body" aria-hidden="true">
+            <p class="page-path" lang="en">/content/wknd/us/en/adventures</p>
+            <div class="sk sk-hero"></div>
+            <div class="sk-row"><div class="sk"></div><div class="sk"></div><div class="sk"></div></div>
+          </div>
+          <div class="tb" data-toolbar role="group" aria-label="Toolbar AEM">
+            <div class="tb-menu-wrap">
+              <button class="tb-env" type="button" aria-expanded="false" aria-controls="env-menu" data-env-btn>
+                <span class="dot" data-env-dot style="--env:#15803d" aria-hidden="true"></span><span class="u-sr-only">Entorno: </span><span data-env-label>Local</span>
+                <svg width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-down"/></svg>
+              </button>
+              <ul class="tb-menu" id="env-menu" data-env-menu aria-label="Entornos" hidden>
+                <li><button type="button" data-env="local">Local</button></li>
+                <li><button type="button" data-env="dev">Dev</button></li>
+                <li><button type="button" data-env="qa">QA</button></li>
+                <li><button type="button" data-env="stage">Stage</button></li>
+              </ul>
+            </div>
+            <span class="tb-sep" aria-hidden="true"></span>
+            <button class="tb-btn" type="button" data-console="edit" aria-label="Editar" title="Editar" aria-pressed="true"><svg width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-edit"/></svg></button>
+            <button class="tb-btn" type="button" data-console="view" aria-label="Vista" title="Vista" aria-pressed="false"><svg width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-view"/></svg></button>
+            <button class="tb-btn" type="button" data-console="sites" aria-label="Sites" title="Sites" aria-pressed="false"><svg width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-sites"/></svg></button>
+            <button class="tb-btn" type="button" data-console="crx" aria-label="CRXDE" title="CRXDE" aria-pressed="false"><svg width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-code"/></svg></button>
+            <span class="tb-sep" aria-hidden="true"></span>
+            <div class="tb-menu-wrap">
+              <button class="tb-btn" type="button" aria-label="Marcadores" title="Marcadores" aria-expanded="false" aria-controls="bm-menu" data-bm-btn><svg width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-bm"/></svg></button>
+              <ul class="tb-menu tb-menu--end" id="bm-menu" data-bm-menu aria-label="Marcadores" hidden>
+                <li><span lang="en">Content Fragments</span></li>
+                <li><span lang="en">Experience Fragments</span></li>
+                <li><span lang="en">Package Manager</span></li>
+              </ul>
+            </div>
+            <span class="tb-sep tb-sep--last" aria-hidden="true"></span>
+            <span class="tb-btn tb-static" aria-hidden="true"><svg width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-gear"/></svg></span>
+          </div>
+        </div>
+      </div>
+      <p class="u-sr-only" role="status" data-status></p>
+      <figcaption>Maqueta ilustrativa, no es la extensión real. Los marcadores son ejemplos.</figcaption>
+    </figure>
+  </section>
+
+  <section class="o-stack luz-section luz-band" id="install" aria-labelledby="i-title">
+    <p class="luz-section__eyebrow">Instalar</p>
+    <h2 class="luz-section__title" id="i-title">Cómo instalar Toolbar AEM en Chrome</h2>
+    <p class="luz-section__lead">Toolbar AEM no está en la Chrome Web Store. Se instala como extensión sin empaquetar, en cuatro pasos y unos dos minutos.</p>
+    <p class="note">Necesita Google Chrome con el <strong>Modo desarrollador</strong> activado en la página de extensiones. Sin cuenta y sin paso de compilación.</p>
+    <ol class="install-steps" role="list">
+      <li>
+        <h3>Descarga el repositorio</h3>
+        <p>Descarga el ZIP y descomprímelo, o clónalo con git.</p>
+        <div class="o-actions"><a class="luz-btn luz-btn--primary luz-btn--sm" href="https://github.com/nandomunoz/toolbar-aem/archive/refs/heads/master.zip"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-dl"/></svg> Descargar ZIP</a></div>
+        <div class="cmd"><code>git clone https://github.com/nandomunoz/toolbar-aem.git</code><button class="luz-copy-btn" type="button" data-copy="git clone https://github.com/nandomunoz/toolbar-aem.git" aria-label="Copiar el comando git clone">Copiar</button></div>
+      </li>
+      <li>
+        <h3>Abre la página de extensiones y activa el Modo desarrollador</h3>
+        <p>Pega esto en la barra de direcciones y activa el <strong>Modo desarrollador</strong>, arriba a la derecha.</p>
+        <div class="cmd"><code>chrome://extensions</code><button class="luz-copy-btn" type="button" data-copy="chrome://extensions" aria-label="Copiar chrome://extensions">Copiar</button></div>
+      </li>
+      <li>
+        <h3>Pulsa «Cargar descomprimida» y elige la carpeta</h3>
+        <p>Selecciona la carpeta <code class="luz-code-inline">extension</code> del repositorio descomprimido o clonado: la que contiene <code class="luz-code-inline">manifest.json</code>.</p>
+      </li>
+      <li>
+        <h3>Configura tus entornos</h3>
+        <p>Pulsa el icono de la extensión para abrir la página de opciones. Añade la URL de autor de cada entorno, guarda y recarga tus pestañas de AEM.</p>
+      </li>
+    </ol>
+    <p class="install-update"><strong>Para actualizar:</strong> descarga o haz pull de la nueva versión en la misma carpeta y pulsa el icono de recarga de Toolbar AEM en <code class="luz-code-inline">chrome://extensions</code>.</p>
+  </section>
+
+  <section class="o-stack luz-section" id="configure" aria-labelledby="c-title">
+    <p class="luz-section__eyebrow">Configurar</p>
+    <h2 class="luz-section__title" id="c-title">Dónde aparece la barra</h2>
+    <p class="luz-section__lead">Toolbar AEM aparece en <code class="luz-code-inline">localhost</code>, en los hosts <code class="luz-code-inline">adobeaemcloud.com</code> y <code class="luz-code-inline">aemcloud.net</code>, y en el host exacto de cada entorno que añadas. Con AMS u on-premise basta con añadir el entorno.</p>
+    <div class="luz-table-wrap" role="region" aria-labelledby="c-cap" tabindex="0">
+      <table class="luz-table" role="table">
+        <caption id="c-cap" class="u-sr-only">Dónde aparece la barra y qué URLs construye, según la configuración de AEM</caption>
+        <thead role="rowgroup"><tr role="row"><th role="columnheader" scope="col">Configuración de AEM</th><th role="columnheader" scope="col">La barra aparece</th><th role="columnheader" scope="col">URLs que construye</th></tr></thead>
+        <tbody role="rowgroup">
+          <tr role="row"><th role="rowheader" scope="row">AEM as a Cloud Service</th><td role="cell" data-label="La barra aparece">Automáticamente</td><td role="cell" data-label="URLs que construye">Shell unificado: <code class="luz-code-inline">/ui#/aem/editor.html/…</code></td></tr>
+          <tr role="row"><th role="rowheader" scope="row">SDK local (<code class="luz-code-inline">localhost:4502</code>)</th><td role="cell" data-label="La barra aparece">Automáticamente</td><td role="cell" data-label="URLs que construye">Clásicas: <code class="luz-code-inline">/editor.html/…</code></td></tr>
+          <tr role="row"><th role="rowheader" scope="row">AMS u on-premise</th><td role="cell" data-label="La barra aparece">Una vez añadido como entorno</td><td role="cell" data-label="URLs que construye">Clásicas: <code class="luz-code-inline">/editor.html/…</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">Los ajustes se guardan con <code class="luz-code-inline">chrome.storage.sync</code>, así que te siguen en tu perfil de Chrome. Los equipos pueden compartirlos como archivo JSON o incluir sus propios valores por defecto en <code class="luz-code-inline">default-config.json</code>.</p>
+  </section>
+
+  <section class="o-stack luz-section luz-band" id="privacy" aria-labelledby="p-title">
+    <p class="luz-section__eyebrow">Privacidad</p>
+    <h2 class="luz-section__title" id="p-title">Sin datos recogidos, sin peticiones de red</h2>
+    <p class="luz-section__lead">Toolbar AEM no recoge datos, no tiene analítica y no hace peticiones de red por su cuenta. Sin CDN, sin fuentes remotas, sin código remoto.</p>
+    <ul class="perms" role="list" aria-label="Permisos que pide la extensión">
+      <li><code>storage</code><span>Guarda tus ajustes en tu perfil de Chrome.</span></li>
+      <li><code>&lt;all_urls&gt;</code><span>Tus entornos pueden estar en cualquier host. En cualquier otro host el script termina sin tocar la página.</span></li>
+    </ul>
+  </section>
+
+  <section class="o-stack luz-section" id="faq" aria-labelledby="q-title">
+    <p class="luz-section__eyebrow">Preguntas</p>
+    <h2 class="luz-section__title" id="q-title">Preguntas sobre Toolbar AEM</h2>
+    <div class="luz-accordion faq"><details name="faq"><summary>¿Es gratis Toolbar AEM?</summary><p>Sí. Toolbar AEM es gratuita y de código abierto bajo la licencia MIT, también para proyectos comerciales, siempre que se conserve el aviso de copyright.</p></details><details name="faq"><summary>¿Está Toolbar AEM en la Chrome Web Store?</summary><p>No. Toolbar AEM se instala como extensión sin empaquetar desde su repositorio de GitHub: descárgala, activa el Modo desarrollador en <code class="luz-code-inline">chrome://extensions</code> y pulsa «Cargar descomprimida». Mira <a href="#install">cómo instalarla</a>.</p></details><details name="faq"><summary>¿Es Toolbar AEM un producto de Adobe?</summary><p>No. Toolbar AEM es una herramienta independiente de la comunidad. No la desarrolla, patrocina, respalda ni da soporte Adobe, y no contiene código de Adobe.</p></details><details name="faq"><summary>¿Funciona con AEM on-premise o AMS, no solo con Cloud Service?</summary><p>Sí. Toolbar AEM funciona con AEM as a Cloud Service, AMS, on-premise y el SDK local. En AMS y on-premise, añade la instancia como entorno en la página de opciones y la barra aparecerá ahí.</p></details><details name="faq"><summary>¿Puede mi equipo compartir los mismos entornos y marcadores?</summary><p>Sí. Exporta los ajustes como archivo JSON e impórtalos en otra máquina, o edita <code class="luz-code-inline">default-config.json</code> y añade un plugin con los marcadores y las reglas de consola del equipo. No pongas nada confidencial en <code class="luz-code-inline">default-config.json</code>: es un recurso accesible desde la web.</p></details><details name="faq"><summary>¿Aparecerá la barra en las auditorías de Lighthouse o en las capturas de pruebas?</summary><p>No. Toolbar AEM no se muestra en navegadores automatizados como Lighthouse o WebDriver.</p></details><details name="faq"><summary>¿Puedo ocultar la barra y quedarme solo con los favicons de colores?</summary><p>Sí. Desactiva «Mostrar la barra» en la página de opciones; el favicon por entorno sigue funcionando. También puedes arrancarla plegada o moverla a la parte superior de la página.</p></details></div>
+  </section>
+
+  <section class="o-stack luz-section luz-band close" aria-labelledby="cl-title">
+    <p class="luz-section__eyebrow">Descargar</p>
+    <h2 class="luz-section__title" id="cl-title">Menos teclear,<br>más AEM</h2>
+    <p class="luz-section__lead">Gratis, de código abierto, instalada en cuatro pasos.</p>
+    <div class="o-actions">
+      <a class="luz-btn luz-btn--primary" href="https://github.com/nandomunoz/toolbar-aem/archive/refs/heads/master.zip"><svg width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-dl"/></svg> Descargar la extensión</a>
+      <a class="luz-btn luz-btn--outline" href="https://github.com/nandomunoz/toolbar-aem"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-gh"/></svg> Ver en GitHub</a>
+    </div>
+  </section>
+</main>
+
+<footer class="luz-site-footer">
+  <div class="o-container o-container--inline o-grid">
+    <div class="luz-site-footer__brand">
+      <p><strong>Toolbar AEM</strong> <span>v2.0.0</span></p>
+      <p>Extensión gratuita de Chrome para desarrolladores y autores de AEM, creada por Nando Muñoz.</p>
+      <p class="fine">Toolbar AEM no está afiliada a Adobe. Adobe, Adobe Experience Manager y AEM son marcas registradas de Adobe Inc., usadas aquí solo para describir con qué funciona la extensión. Hecho con <a href="https://luzds.com/">LUZ</a>.</p>
+    </div>
+    <nav class="luz-site-footer__col" aria-labelledby="footer-links">
+      <h2 class="luz-site-footer__col-title" id="footer-links">Enlaces</h2>
+      <ul>
+        <li><a href="https://github.com/nandomunoz/toolbar-aem">Código fuente</a></li>
+        <li><a href="https://github.com/nandomunoz/toolbar-aem/issues">Informar de un problema</a></li>
+        <li><a href="https://github.com/nandomunoz/toolbar-aem/blob/master/LICENSE">Licencia MIT</a></li>
+        <li><a href="#install">Guía de instalación</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<luz-theme-mode><fieldset class="luz-theme-mode__group"><legend class="luz-theme-mode__legend">Modo de color</legend><label class="luz-theme-mode__option"><input class="luz-theme-mode__input" type="radio" name="luz-theme-mode" value="auto" checked><svg class="luz-theme-mode__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 7.5a4.5 4.5 0 0 0 0 9ZM12 7.5a4.5 4.5 0 0 1 0 9M12 2.5v2M12 19.5v2M2.5 12h2M5.3 5.3l1.4 1.4M5.3 18.7l1.4-1.4"/><path d="M12 7.5a4.5 4.5 0 0 0 0 9Z" fill="currentColor"/></svg>Automático</label><label class="luz-theme-mode__option"><input class="luz-theme-mode__input" type="radio" name="luz-theme-mode" value="light"><svg class="luz-theme-mode__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>Claro</label><label class="luz-theme-mode__option"><input class="luz-theme-mode__input" type="radio" name="luz-theme-mode" value="dark"><svg class="luz-theme-mode__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"/></svg>Oscuro</label><label class="luz-theme-mode__option"><input class="luz-theme-mode__input" type="radio" name="luz-theme-mode" value="high-contrast"><svg class="luz-theme-mode__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17Z" fill="currentColor"/></svg>Alto contraste</label></fieldset></luz-theme-mode>
+</body>
+</html>
