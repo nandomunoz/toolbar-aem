@@ -3,25 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Toolbar AEM · Chrome extension to switch AEM consoles</title>
-<meta name="description" content="Free Chrome extension for AEM: jump between Editor, View, Sites and CRXDE, and between Local, Dev, QA and Stage, keeping the content path. Install in 4 steps.">
-<link rel="canonical" href="https://nandomunoz.github.io/toolbar-aem/">
-<link rel="alternate" hreflang="en" href="https://nandomunoz.github.io/toolbar-aem/">
-<link rel="alternate" hreflang="es" href="https://nandomunoz.github.io/toolbar-aem/es/">
-<link rel="alternate" hreflang="x-default" href="https://nandomunoz.github.io/toolbar-aem/">
+<title>Toolbar AEM · Chrome extension to switch AEM environments and consoles</title>
+<meta name="description" content="Free, open-source Chrome extension for AEM. Switch between Editor, View, Sites and CRXDE and between Local, Dev, QA and Stage, keeping the content path.">
+<link rel="canonical" href="https://nandomunoz.com/toolbar-aem/">
+<link rel="alternate" hreflang="en" href="https://nandomunoz.com/toolbar-aem/">
+<link rel="alternate" hreflang="es" href="https://nandomunoz.com/toolbar-aem/es/">
+<link rel="alternate" hreflang="x-default" href="https://nandomunoz.com/toolbar-aem/">
 <meta name="robots" content="index, follow">
 <meta name="color-scheme" content="light dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Toolbar AEM">
-<meta property="og:url" content="https://nandomunoz.github.io/toolbar-aem/">
+<meta property="og:url" content="https://nandomunoz.com/toolbar-aem/">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="es_ES">
-<meta property="og:title" content="Toolbar AEM · Chrome extension to switch AEM consoles">
+<meta property="og:title" content="Toolbar AEM · Chrome extension to switch AEM environments and consoles">
 <meta property="og:description" content="A floating toolbar on AEM pages: switch console and environment in one click, keeping the content path. Free and open source.">
-<meta property="og:image" content="https://nandomunoz.github.io/toolbar-aem/assets/toolbar-scene.webp">
+<meta property="og:image" content="https://nandomunoz.com/toolbar-aem/assets/og-toolbar-aem.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Toolbar AEM floating above an Adobe Experience Manager browser window, with lines from each button to the console it opens.">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="assets/icon.png" type="image/png">
+<meta name="twitter:image:alt" content="Toolbar AEM floating above an Adobe Experience Manager browser window, with lines from each button to the console it opens.">
+<link rel="icon" href="assets/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/toolbar-scene.webp" as="image" type="image/webp" fetchpriority="high">
 <script>document.documentElement.className = "js";</script>
 <script src="https://cdn.jsdelivr.net/npm/@luz-ds/core@0.4.1/dist/theme-boot.min.js" integrity="sha384-OZKDsi988vhyFXOEXAMOafikHXZ3ixsF5DPECRdgxQ61gvyupyYCxaH4SOB4kaYV" crossorigin="anonymous"></script>
@@ -37,13 +42,24 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
+  "@id": "https://nandomunoz.com/toolbar-aem/#app",
   "name": "Toolbar AEM",
   "alternateName": "Toolbar AEM Browser",
-  "url": "https://nandomunoz.github.io/toolbar-aem/",
+  "url": "https://nandomunoz.com/toolbar-aem/",
   "inLanguage": "en",
   "description": "Chrome extension that adds a floating toolbar to Adobe Experience Manager pages to switch between consoles and environments without retyping URLs.",
   "applicationCategory": "DeveloperApplication",
-  "operatingSystem": "Google Chrome",
+  "operatingSystem": "Google Chrome (desktop)",
+  "softwareVersion": "2.0.0",
+  "softwareRequirements": "Google Chrome with Developer mode turned on (installed unpacked, not from the Chrome Web Store)",
+  "featureList": [
+    "Console switching",
+    "Environment switching",
+    "A favicon per environment",
+    "Bookmarks",
+    "“Go to path” button",
+    "Team settings and plugins"
+  ],
   "license": "https://opensource.org/licenses/MIT",
   "isAccessibleForFree": true,
   "offers": {
@@ -52,11 +68,18 @@
     "priceCurrency": "USD"
   },
   "downloadUrl": "https://github.com/nandomunoz/toolbar-aem/archive/refs/heads/master.zip",
-  "codeRepository": "https://github.com/nandomunoz/toolbar-aem",
-  "image": "https://nandomunoz.github.io/toolbar-aem/assets/toolbar-scene.webp",
+  "screenshot": "https://nandomunoz.com/toolbar-aem/assets/toolbar-annotated.webp",
+  "image": "https://nandomunoz.com/toolbar-aem/assets/og-toolbar-aem.png",
+  "sameAs": [
+    "https://github.com/nandomunoz/toolbar-aem"
+  ],
   "author": {
     "@type": "Person",
-    "name": "Nando Muñoz"
+    "name": "Nando Muñoz",
+    "url": "https://nandomunoz.com/",
+    "sameAs": [
+      "https://github.com/nandomunoz"
+    ]
   }
 }
 </script>
@@ -94,8 +117,8 @@
     <div class="wrap hero-in">
       <div class="hero-copy">
         <p class="label">Free Chrome extension · MIT · not an Adobe product</p>
-        <h1 id="hero-title">AEM toolbar,<br>one click away</h1>
-        <p class="hero-text">Toolbar AEM is a free Chrome extension that adds a floating toolbar to Adobe Experience Manager pages. Jump between Editor, View, Sites and CRXDE, and between Local, Dev, QA and Stage, without retyping URLs. The content path stays the same.</p>
+        <h1 id="hero-title">AEM toolbar, <br>one click away</h1>
+        <p class="hero-text">Toolbar AEM is a free Chrome extension that works as an AEM environment switcher: it adds a floating toolbar to Adobe Experience Manager pages. Jump between Editor, View, Sites and CRXDE, and between Local, Dev, QA and Stage, without retyping URLs. The content path stays the same.</p>
         <p class="tagline">One click · same path · any environment</p>
         <div class="actions">
           <a class="btn" href="https://github.com/nandomunoz/toolbar-aem/archive/refs/heads/master.zip"><svg width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-dl"/></svg> Download the extension</a>
@@ -226,7 +249,7 @@
     <div class="wrap">
       <p class="label">Download</p>
       <div>
-        <h2 id="cl-title">Less retyping,<br>more AEM</h2>
+        <h2 id="cl-title">Less retyping, <br>more AEM</h2>
         <p class="close-text">Free, open source, installed in four steps.</p>
         <div class="slide-actions">
           <a class="btn" href="https://github.com/nandomunoz/toolbar-aem/archive/refs/heads/master.zip"><svg width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-dl"/></svg> Download the extension</a>
@@ -248,7 +271,7 @@
         <li><a href="https://github.com/nandomunoz/toolbar-aem/blob/master/LICENSE">MIT License</a></li>
         <li><a href="#install">Installation guide</a></li>
       </ul>
-      <p class="fine">Free Chrome extension for AEM developers and authors, created by Nando Muñoz. Toolbar AEM is not affiliated with Adobe. Adobe, Adobe Experience Manager and AEM are trademarks of Adobe Inc., used here only to describe what the extension works with. Built with <a href="https://luzds.com/">LUZ</a>.</p>
+      <p class="fine">Free Chrome extension for AEM developers and authors, created by <a href="https://nandomunoz.com/">Nando Muñoz</a>. Toolbar AEM is not affiliated with Adobe. Adobe, Adobe Experience Manager and AEM are trademarks of Adobe Inc., used here only to describe what the extension works with. Built with <a href="https://luzds.com/">LUZ</a>.</p>
     </div>
   </div>
 </footer>
