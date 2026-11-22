@@ -332,6 +332,14 @@ h1, h2, h3 { font-size: revert; }
 h3 { font-size: 1.02rem; }
 caption { text-align: start; }
 
+/* Hero image: inside the column, smaller, with room to breathe on the right */
+.hero-media { --bleed: 0px; margin: 0; padding-inline-end: clamp(1rem, 4vw, 3rem); }
+.hero-img {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+}
+@media (max-width: 820px) { .hero-media { --bleed: 0px; margin-inline: 0; padding-inline-end: 0; } }
+
 /* Header: lang switch and download sit together at the end of the row */
 .top-actions { display: flex; align-items: center; gap: 0.75rem; }
 .nav { margin-left: auto; }
