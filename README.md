@@ -8,6 +8,8 @@ It works with any AEM project: AEM as a Cloud Service, AMS or on-premise, and a 
 
 Plain JavaScript, Manifest V3, no build step and no dependencies.
 
+Website and install guide, in English and Spanish: <https://nandomunoz.com/toolbar-aem/>.
+
 > **Not an Adobe product.** This is an independent, community-made tool. It is not affiliated with, endorsed by or supported by Adobe.
 
 ## Features
@@ -183,7 +185,7 @@ The landing lives in `docs/` and is plain HTML and JavaScript on top of [LUZ](ht
 python3 -m http.server 8000 --directory docs
 ```
 
-Then open <http://localhost:8000/> (English) or <http://localhost:8000/es/> (Spanish).
+Then open <http://localhost:8000/> (English) or <http://localhost:8000/es/> (Spanish). It is published at <https://nandomunoz.com/toolbar-aem/>, a subpath of that domain, so crawlers read the root `robots.txt` of the domain and not a file in `docs/`: the sitemap is `docs/sitemap.xml` and has to be listed there.
 
 ## About the project
 
