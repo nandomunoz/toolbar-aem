@@ -153,7 +153,6 @@ svg:not(.defs) { flex: none; }
 /* Sections */
 .sec { padding-block: clamp(4.5rem, 10vw, 8rem); }
 .sec--tint { background: var(--paper-2); }
-.sec--stage { background: var(--light-bg); color: #000; --ink: #000; --ink-2: #30353b; --ink-3: #4f565d; --line: rgb(0 0 0 / 12%); }
 .sec h2, .close h2 { margin-bottom: 1.25rem; font-size: clamp(2rem, 1.2rem + 2.6vw, 3.4rem); line-height: 1.02; letter-spacing: -0.04em; }
 .intro { max-inline-size: 38rem; color: var(--ink-2); }
 .small { margin-top: 1.5rem; max-inline-size: 42rem; font-size: 0.85rem; color: var(--ink-3); }
@@ -182,52 +181,6 @@ h3 { font-size: 1.02rem; line-height: 1.3; letter-spacing: -0.01em; }
 .features li::before { content: ""; display: block; inline-size: 0.6rem; block-size: 0.6rem; margin-bottom: 1.25rem; border-radius: 50%; background: var(--ink); transition: background-color 0.3s; }
 .features li:first-child::before, .features li:hover::before { background: var(--accent); }
 .features h3 { margin-bottom: 0.4rem; }
-
-/* 5. Try it: the mock-up, with the real toolbar's look */
-.demo { margin-top: 2.5rem; max-inline-size: 56rem; }
-.browser { border-radius: 10px; overflow: hidden; background: #f4f5f7; box-shadow: 0 0 0 1px rgb(0 0 0 / 10%), 0 40px 80px -40px rgb(0 0 0 / 50%); color: #000; }
-.tabbar { display: flex; padding: 0.5rem 0.6rem 0; background: #dde1e6; }
-.tab { display: inline-flex; align-items: center; gap: 0.5rem; max-inline-size: 100%; padding: 0.45rem 0.9rem; border-radius: 8px 8px 0 0; background: #f4f5f7; font-size: 0.78rem; white-space: nowrap; overflow: hidden; }
-.fav { display: inline-grid; place-items: center; inline-size: 1.05rem; block-size: 1.05rem; border-radius: 3px; background: var(--env); color: #fff; font: 700 0.5rem/1 var(--sans); transition: background-color 0.3s; }
-.urlbar { padding: 0.5rem 0.75rem; border-bottom: 1px solid rgb(0 0 0 / 10%); }
-.url { display: block; padding: 0.35rem 0.75rem; border-radius: 999px; background: #e6e9ed; font: 0.72rem/1.4 var(--mono); color: #3b4046; overflow-wrap: anywhere; }
-.url.is-new { animation: flash 0.6s var(--ease); }
-@keyframes flash { from { background: #ffd6d6; } }
-.page { position: relative; block-size: 22rem; padding-bottom: 5rem; }
-.page-head { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 1rem; background: #2b2b2b; color: #eee; font-size: 0.78rem; }
-.page-env { padding: 0.15rem 0.55rem; border-radius: 999px; background: var(--env, #15803d); color: #fff; font-size: 0.68rem; font-weight: 700; transition: background-color 0.3s; }
-.page-body { padding: 1rem; }
-.page-path { margin-bottom: 0.8rem; font: 0.72rem/1.4 var(--mono); color: #626970; }
-.sk { block-size: 3.2rem; border-radius: 6px; background: #e3e6ea; transition: block-size 0.4s var(--ease); }
-.sk-hero { block-size: 7rem; margin-bottom: 0.7rem; }
-.sk-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
-.page[data-mode="crx"] .sk-hero, .page[data-mode="sites"] .sk-hero { block-size: 2rem; }
-.page[data-mode="crx"] .sk-row, .page[data-mode="sites"] .sk-row { grid-template-columns: 1fr; }
-.page[data-mode="crx"] .sk-row .sk, .page[data-mode="sites"] .sk-row .sk { block-size: 1.6rem; }
-
-.tb {
-  position: absolute; left: 50%; bottom: 1.1rem; transform: translateX(-50%);
-  display: flex; align-items: stretch; padding: 0.25rem;
-  border-radius: 999px; background: var(--navy); color: #e6e4f0; border: 1px solid rgb(255 255 255 / 8%);
-  box-shadow: 0 14px 30px -10px rgb(0 0 0 / 55%); font-size: 0.8rem; white-space: nowrap;
-  max-inline-size: calc(100% - 1rem); flex-wrap: wrap; justify-content: center;
-}
-.tb button { font: inherit; color: inherit; cursor: pointer; }
-.tb-env, .tb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem; min-block-size: 2.25rem; padding: 0.3rem 0.8rem; border: 0; border-radius: 999px; background: transparent; transition: background-color 0.2s, color 0.2s; }
-.tb-btn { min-inline-size: 2.6rem; padding-inline: 0.6rem; }
-.tb-env:hover, .tb-btn:hover:not(:disabled):not(.tb-static) { background: rgb(255 255 255 / 9%); }
-.tb-env svg { opacity: 0.6; }
-.dot { inline-size: 0.55rem; block-size: 0.55rem; border-radius: 50%; background: var(--env); transition: background-color 0.3s; }
-.tb-sep { inline-size: 1px; margin-block: 0.35rem; background: rgb(255 255 255 / 10%); }
-.tb-menu-wrap { position: relative; display: flex; }
-.tb-menu { position: absolute; bottom: calc(100% + 0.6rem); left: 0; min-inline-size: 10rem; padding: 0.3rem; border-radius: 10px; background: var(--navy); box-shadow: 0 14px 30px -10px rgb(0 0 0 / 55%); animation: pop 0.2s var(--ease); }
-@keyframes pop { from { opacity: 0; transform: translateY(6px); } }
-.tb-menu--end { left: auto; right: 0; }
-.tb-menu button, .tb-menu span { display: block; inline-size: 100%; padding: 0.45rem 0.65rem; border: 0; border-radius: 6px; background: transparent; text-align: left; }
-.tb-menu button:hover, .tb-menu button:focus-visible { background: rgb(255 255 255 / 9%); }
-.tb-menu button[aria-current="true"] { color: #cfcbe2; font-weight: 700; }
-.tb-menu button[aria-current="true"]::after { content: " ✓"; }
-figcaption { margin-top: 1rem; font-size: 0.72rem; letter-spacing: 0.04em; color: var(--ink-3); }
 
 /* 6. Install */
 .install-in { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: var(--gap) clamp(2rem, 5vw, 4.5rem); align-items: start; }
@@ -310,13 +263,6 @@ details a { color: var(--ink); text-decoration-color: var(--accent); text-decora
   .actions .btn { flex: 1 1 100%; }
   .steps, .features { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
   .perms li { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; }
-  .page { block-size: 20rem; }
-  .tb { font-size: 0.72rem; }
-  .tb-env { padding-inline: 0.55rem; }
-  .tb-btn { min-inline-size: 2.1rem; padding-inline: 0.35rem; }
-}
-@media (max-width: 400px) {
-  .tb [data-console="crx"], .tb .tb-static, .tb .tb-sep--last { display: none; }
 }
 
 /* ---- Additions: LUZ's pieces, and what the accessibility review asked for ---- */
@@ -363,25 +309,8 @@ summary:hover { background: none; }
 details[open] > summary { margin-block-end: 0; }
 .table-wrap:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-/* Toolbar mock-up: pressed state with more than a tint, keyboard focus, tap size */
-.tb-btn[aria-pressed="true"] { background: rgb(255 255 255 / 16%); color: #fff; box-shadow: inset 0 -3px 0 #fff; }
-.tb-btn[aria-pressed="true"]:hover { background: rgb(255 255 255 / 22%); }
-.tb-env, .tb-btn { min-block-size: 2.5rem; }
-.tb-btn { min-inline-size: 2.6rem; }
-.tb :focus-visible { outline: 2px solid #fff; outline-offset: -2px; }
-.tb-env svg { opacity: 0.85; }
-.tb-menu { margin: 0; list-style: none; }
-.tb-menu[hidden] { display: none; }
-.tb-menu button, .tb-menu span { min-block-size: 2.25rem; }
-.tb-menu button:hover, .tb-menu button:focus-visible { background: rgb(255 255 255 / 14%); }
-.demo figcaption { color: var(--ink-3); }
-
-@media (forced-colors: active) {
-  .tb-btn[aria-pressed="true"] { forced-color-adjust: none; background: Highlight; color: HighlightText; box-shadow: none; }
-}
 :root[data-mode="high-contrast"] .hero .label, :root[data-mode="high-contrast"] .hero .tagline, :root[data-mode="high-contrast"] .hero-text { color: #000; }
 :root[data-mode="high-contrast"] .close-text, :root[data-mode="high-contrast"] .close .label { color: #fff; }
-:root[data-mode="high-contrast"] .browser { box-shadow: 0 0 0 2px #000; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
