@@ -213,9 +213,6 @@ thead th { border-bottom: 1px solid var(--ink); font: 700 0.68rem/1.3 var(--sans
 /* 9. FAQ */
 .faq { max-inline-size: 48rem; }
 .faq h2 { margin-bottom: 2.25rem; }
-details { border-top: 1px solid var(--line); }
-details:first-of-type { border-top-color: var(--ink); }
-details:last-of-type { border-bottom: 1px solid var(--line); }
 summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.05rem 0; font-weight: 700; letter-spacing: -0.01em; cursor: pointer; list-style: none; transition: color 0.2s; }
 summary:hover { color: var(--ink-2); }
 summary::-webkit-details-marker { display: none; }
@@ -303,6 +300,9 @@ luz-lang-switch { --luz-lang-switch-top: 4rem; }
 .cmd .copy.is-copied { color: #ff6b6b; border: 0; }
 .cmd .copy:focus-visible { outline: 2px solid #fff; outline-offset: -2px; }
 
+/* FAQ: LUZ's accordion gives the box; its colours come from the page's palette */
+.luz-accordion { --luz-surface: var(--paper); --luz-divider: var(--line); }
+summary { padding-inline: 0; padding-block: 0.7rem; }
 /* LUZ's base styles must not leak into the FAQ */
 summary { margin: 0; border-radius: 0; background: none; }
 summary:hover { background: none; }
