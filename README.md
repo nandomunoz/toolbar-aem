@@ -2,7 +2,7 @@
 
 A Chrome extension that adds a floating toolbar to Adobe Experience Manager (AEM) pages, so you can jump between consoles and environments without retyping URLs.
 
-![The toolbar floating over an AEM page, with its environment switcher, console buttons and menus](toolbar-aem-02.jpeg)
+![The toolbar floating over an AEM page, with its environment switcher, console buttons and menus](docs/assets/toolbar-aem-02.jpeg)
 
 It works with any AEM project: AEM as a Cloud Service, AMS or on-premise, and a local SDK on `localhost:4502`. Environments, bookmarks and behaviour are all configured from the options page — nothing is tied to a specific project.
 
@@ -20,7 +20,7 @@ Plain JavaScript, Manifest V3, no build step and no dependencies.
 - **Import / export** — share your settings with your team as a JSON file.
 - **Plugins** — ship project-specific bookmarks and console rules in a separate file, without touching the core.
 
-![Illustration of the toolbar linking to the different AEM consoles](toolbar-aem-01.jpeg)
+![Illustration of the toolbar linking to the different AEM consoles](docs/assets/toolbar-aem-01.jpeg)
 
 ## Install
 
@@ -28,7 +28,7 @@ The extension is not on the Chrome Web Store; load it unpacked:
 
 1. Clone or download this repository.
 2. Open `chrome://extensions` and turn on **Developer mode**.
-3. Click **Load unpacked** and select the repository folder.
+3. Click **Load unpacked** and select the `extension/` folder of the repository (the one that contains `manifest.json`).
 4. Click the extension icon to open the options page and set up your environments.
 
 ## Using the toolbar
@@ -96,19 +96,19 @@ Add a label and either a path (`/assets.html/content/dam/my-site`) or a full URL
 
 ### Defaults
 
-The values used before anything is saved — and restored by **Reset to defaults** — live in [default-config.json](default-config.json). The Dev, QA and Stage environments in it are placeholders: replace them from the options page, or edit the file to ship the extension to your team with your own environments, bookmarks and console rules already in place.
+The values used before anything is saved — and restored by **Reset to defaults** — live in [default-config.json](extension/default-config.json). The Dev, QA and Stage environments in it are placeholders: replace them from the options page, or edit the file to ship the extension to your team with your own environments, bookmarks and console rules already in place.
 
 Do not put anything confidential in `default-config.json`. Like the bundled favicons, it is a web-accessible resource, so a web page that knows the extension's ID can read it.
 
 Favicons for the environment ids `local`, `dev`, `qa` and `stage` are bundled. Any other environment gets a generated favicon: its colour with the first two characters of its name.
 
-To bundle your own favicon for an environment, add the image to the repository, map the environment id to the file name under `bundledFavicons` in `default-config.json`, and list the file under `web_accessible_resources` in `manifest.json`.
+To bundle your own favicon for an environment, add the image to the `extension/` folder, map the environment id to the file name under `bundledFavicons` in `default-config.json`, and list the file under `web_accessible_resources` in `manifest.json`.
 
 ## Plugins
 
 A plugin is a JavaScript file that registers project-specific bookmarks and console rules. Plugin bookmarks are always shown and cannot be edited from the options page, which makes them a good fit for links a whole team should share.
 
-1. Create `plugins/my-project.js`:
+1. Create `extension/plugins/my-project.js`:
 
    ```js
    registerAemToolbarPlugin({
@@ -123,13 +123,13 @@ A plugin is a JavaScript file that registers project-specific bookmarks and cons
    });
    ```
 
-2. Load it after `config.js` and before `index.js` in [manifest.json](manifest.json):
+2. Load it after `config.js` and before `index.js` in [manifest.json](extension/manifest.json):
 
    ```json
    "js": ["config.js", "plugins/my-project.js", "index.js"]
    ```
 
-3. Load it in [options.html](options.html) too, after `config.js`:
+3. Load it in [options.html](extension/options.html) too, after `config.js`:
 
    ```html
    <script src="plugins/my-project.js"></script>
@@ -161,17 +161,29 @@ The extension collects no data, has no analytics and makes no network requests o
 
 ## Project structure
 
-| File | Purpose |
+| Path | Purpose |
 | --- | --- |
-| `manifest.json` | Extension manifest (Manifest V3). |
-| `default-config.json` | Default environments, settings, bookmarks and console rules. |
-| `config.js` | Loads and merges defaults, saved settings and plugins. Shared by the content script and the options page. |
-| `index.js`, `style.css` | The toolbar: content script and its styles. |
-| `options.html`, `options.js`, `options.css` | The options page. |
-| `background.js` | Service worker; opens the options page. |
-| `credits.js`, `credits.css` | Credits screen on the options page. |
-| `fonts/` | Cozette, the font of the credits screen. |
-| `plugins/` | Optional project-specific plugins. |
+| `extension/` | The Chrome extension. This is the folder you load unpacked. |
+| `extension/manifest.json` | Extension manifest (Manifest V3). |
+| `extension/default-config.json` | Default environments, settings, bookmarks and console rules. |
+| `extension/config.js` | Loads and merges defaults, saved settings and plugins. Shared by the content script and the options page. |
+| `extension/index.js`, `extension/style.css` | The toolbar: content script and its styles. |
+| `extension/options.html`, `options.js`, `options.css` | The options page. |
+| `extension/background.js` | Service worker; opens the options page. |
+| `extension/credits.js`, `extension/credits.css` | Credits screen on the options page. |
+| `extension/fonts/` | Cozette, the font of the credits screen. |
+| `extension/plugins/` | Optional project-specific plugins. |
+| `docs/` | The landing page, published with GitHub Pages: English at the root, Spanish in `es/`. |
+
+## Landing page
+
+The landing lives in `docs/` and is plain HTML and JavaScript on top of [LUZ](https://luzds.com), loaded from its CDN. Publish it in **Settings > Pages > Deploy from a branch**, branch `master`, folder `/docs`. To look at it locally:
+
+```sh
+python3 -m http.server 8000 --directory docs
+```
+
+Then open <http://localhost:8000/> (English) or <http://localhost:8000/es/> (Spanish).
 
 ## About the project
 

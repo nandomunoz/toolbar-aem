@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nandomunoz.github.io/toolbar-aem/sitemap.xml
